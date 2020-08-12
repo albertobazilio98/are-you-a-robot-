@@ -8,7 +8,6 @@ let trainedClassifier;
 let classifier;
 classifier = natural.BayesClassifier.load('classifier.json', natural.PorterStemmerPt, (err, loadedClassifier) => {
   if (err) return;
-  console.log(loadedClassifier);
 
   classifier = loadedClassifier;
   trainedClassifier = loadedClassifier;
@@ -34,8 +33,8 @@ client.on('message', (message) => {
       trainedClassifier = savedClassifier;
     });
   }
-  if (message.content.startsWith('test')) {
-    const text = message.content.slice(4);
+  if (message.content.startsWith(`<@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`<@${process.env.CLIENT_ID}>`)) {
+    const text = message.content.slice(message.content.indexOf(' '));
     console.log(trainedClassifier.getClassifications(text));
     message.channel.send(trainedClassifier.classify(text));
   }

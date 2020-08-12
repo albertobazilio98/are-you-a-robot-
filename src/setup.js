@@ -6,7 +6,7 @@ const doLogin = () => {
 };
 
 const setPresence = () => {
-  client.user.setPresence({ activity: { name: `${process.env.PREFIX} help`, type: 0 } })
+  client.user.setPresence({ activity: { name: 'reaja à mensagens pra me treinar xD', type: 0 } })
     .catch((e) => console.log(e));
   // 0 = Jogando
   // 1 = Transmitindo
