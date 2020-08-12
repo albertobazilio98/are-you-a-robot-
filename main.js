@@ -26,7 +26,6 @@ client.on('messageReactionAdd', (messageReaction) => {
 });
 
 client.on('message', (message) => {
-  // message.react('🍆');
   if (message.content === 'train' && message.author.id === '206124480928415744') {
     classifier.save('classifier.json', (err, savedClassifier) => {
       savedClassifier.train();
