@@ -4,6 +4,7 @@
 
   - Node 12.16.1
     - In case you didn't have node installed, is recommended the use of NVM. [full guide here](https://github.com/creationix/nvm)
+  - npm 6.13.4
   - Git
 
 ## Setup
