@@ -21,7 +21,8 @@
     "discord.js": "^12.2.0",
     "dotenv-flow": "^3.2.0",
     "esm": "^3.2.25",
-    "natural": "^2.1.5"
+    "natural": "^2.1.5",
+    "node-cron": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
