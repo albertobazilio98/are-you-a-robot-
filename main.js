@@ -54,7 +54,7 @@ client.on('messageReactionAdd', (messageReaction) => {
 });
 
 client.on('message', (message) => {
-  if (message.content === 'train' && message.author.id === '206124480928415744') {
+  if (message.content === 'train' && message.author.id === '744397782416097311') {
     saveAndTrain();
   }
   if (message.content.startsWith(`<@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`<@${process.env.CLIENT_ID}>`)) {
