@@ -24,6 +24,7 @@ doSetup(client);
 
 const saveAndTrain = () => {
   classifier.save('classifier.json', (err, savedClassifier) => {
+    console.log('Trained!');
     savedClassifier.train();
     trainedClassifier = savedClassifier;
   });
@@ -38,7 +39,6 @@ e se você achar que eu me equivoquei e quer ajudar a me corrigir, você pode re
 };
 
 cron.schedule('0 0 * * * *', () => {
-  console.log('Trained!');
   saveAndTrain();
 });
 
