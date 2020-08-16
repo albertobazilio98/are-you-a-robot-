@@ -29,6 +29,14 @@ const saveAndTrain = () => {
   });
 };
 
+const introductionMessage = (channel) => {
+  channel.send(`Olá, sou uma inteligencia artificial 😃 e fui criado pra entender linguagem natural (essa que vocês seres humanos utilizam para se comunicar), mas pra mim é muito dificil entender o que vocês falam 😭 então quero pelo menos entender o sentimento por trás do que vocês estão falando, e pra isso vocês podem reagir às suas próprias mensagens e às de outras pessoas com emojis que melhor representam elas, eu vou estar olhando e tomando nota pra poder ficar mais esperto, só isso ja me deixa muito feliz 😆\n
+se quiser ver o resultado dos meus estudos, você pode me chamar me mencionando e colocando a frase que você quer que eu interprete que eu vou te responder, tipo assim ó:\n
+<@742812623686336583> bom dia!
+dai eu respondo com um emoji desse jeito -> ${trainedClassifier.classify('bom dia!')}\n
+e se você achar que eu me equivoquei e quer ajudar a me corrigir, você pode reagir a mensagem que você me chamou que eu vou tentar aprender o certo`);
+};
+
 cron.schedule('0 0 * * * *', () => {
   console.log('Trained!');
   saveAndTrain();
@@ -60,4 +68,11 @@ client.on('message', (message) => {
     console.log(cassificationSumary.slice(0, 5));
     message.channel.send(trainedClassifier.classify(text));
   }
+  if (message.content.startsWith(`se apresenta <@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`se apresenta <@${process.env.CLIENT_ID}>`)) {
+    introductionMessage(message.channel);
+  }
+});
+
+client.on('guildCreate', (server) => {
+  if (server.systemChannel) introductionMessage(server.systemChannel);
 });
