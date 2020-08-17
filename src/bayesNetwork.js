@@ -1,4 +1,6 @@
 import natural from 'natural';
+import { docs } from '../classifier.json';
+import { emojis } from '../emojis.json';
 
 class BayesNetwork {
   constructor(fileName) {
