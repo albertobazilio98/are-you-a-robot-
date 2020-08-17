@@ -1,13 +1,14 @@
 import { config } from 'dotenv-flow';
 import Discord from 'discord.js';
-// import natural from 'natural';
 import cron from 'node-cron';
 import doSetup from './src/setup';
-import BayesNetwork from './src/mainNetwork';
+import BayesNetwork from './src/bayesNetwork';
+import { emojis } from './emojis.json';
 
 const client = new Discord.Client();
 
 const mainNetwork = new BayesNetwork('classifier.json');
+const sentimentNetwork = new BayesNetwork('sentimentClassifier.json');
 
 config();
 doSetup(client);
@@ -22,15 +23,20 @@ e se você achar que eu me equivoquei e quer ajudar a me corrigir, você pode re
 
 cron.schedule('0 0 * * * *', () => {
   mainNetwork.saveAndTrain();
+  sentimentNetwork.saveAndTrain();
 });
 
 client.on('messageReactionAdd', (messageReaction) => {
   const message = messageReaction.message.content;
-  // const reactors = messageReaction.users.cache;
-  // const lastReactor = Array.from(reactors)[reactors.size - 1][1];
-  // eslint-disable-next-line no-underscore-dangle
+  const reactors = messageReaction.users.cache;
+  const lastReactor = Array.from(reactors)[reactors.size - 1][1];
+  if (lastReactor.bot) return;
+
   const reaction = messageReaction._emoji.name;
   mainNetwork.tokenizeAndLearn(message, reaction);
+  if (emojis[reaction]) {
+    sentimentNetwork.tokenizeAndLearn(message, emojis[reaction]);
+  }
 });
 
 client.on('message', (message) => {
@@ -39,11 +45,14 @@ client.on('message', (message) => {
   }
   if (message.content.startsWith(`<@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`<@${process.env.CLIENT_ID}>`)) {
     const text = message.content.slice(message.content.indexOf(' '));
-    console.log(mainNetwork.classificationSumary(text));
-    message.channel.send(mainNetwork.trainedClassifier.classify(text));
+    console.log(mainNetwork.classificationSumary(text), sentimentNetwork.classify(text));
+    message.channel.send(`${mainNetwork.classify(text)} - ${sentimentNetwork.classify(text)}`);
   }
-  if (message.content.startsWith(`se apresenta <@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`se apresenta <@${process.env.CLIENT_ID}>`)) {
-    introductionMessage(message.channel);
+  if (message.content.startsWith(`hey <@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`hey <@${process.env.CLIENT_ID}>`)) {
+    const text = message.content.slice(message.content.indexOf('>') + 2);
+    if (text.startsWith('se apresenta')) {
+      introductionMessage(message.channel);
+    }
   }
 });
 

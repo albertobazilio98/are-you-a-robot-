@@ -8,6 +8,14 @@ class BayesNetwork {
       this.fileName, natural.PorterStemmerPt, (err, loadedClassifier) => {
         if (err) {
           this.classifier = new natural.BayesClassifier();
+
+          docs.forEach((elem) => {
+            if (emojis[elem.label]) {
+              this.classifier.addDocument(elem.text, emojis[elem.label]);
+            }
+          });
+
+          this.saveAndTrain();
           return;
         }
 
@@ -40,6 +48,10 @@ class BayesNetwork {
       if (a.value < b.value) return 1;
       return 0;
     });
+  }
+
+  classify(text) {
+    return this.trainedClassifier.classify(text);
   }
 }
 
