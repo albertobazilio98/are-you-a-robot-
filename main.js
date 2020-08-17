@@ -42,6 +42,7 @@ client.on('messageReactionAdd', (messageReaction) => {
 client.on('message', (message) => {
   if (message.content === 'train' && message.author.id === process.env.OWNER_ID) {
     mainNetwork.saveAndTrain();
+    sentimentNetwork.saveAndTrain();
   }
   if (message.content.startsWith(`<@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`<@${process.env.CLIENT_ID}>`)) {
     const text = message.content.slice(message.content.indexOf(' '));

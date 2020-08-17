@@ -31,7 +31,7 @@ class BayesNetwork {
 
   saveAndTrain() {
     this.classifier.save(this.fileName, (err, savedClassifier) => {
-      console.log('Trained!');
+      console.log(this.fileName);
       savedClassifier.train();
       this.trainedClassifier = savedClassifier;
     });
