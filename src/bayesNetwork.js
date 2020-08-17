@@ -24,14 +24,14 @@ class BayesNetwork {
         this.classifier = loadedClassifier;
         this.trainedClassifier = loadedClassifier;
         this.trainedClassifier.train();
-        console.log('Successfully loaded!');
+        console.log(`${this.fileName} Successfully loaded!`);
       },
     );
   }
 
   saveAndTrain() {
     this.classifier.save(this.fileName, (err, savedClassifier) => {
-      console.log(this.fileName);
+      console.log(`${this.fileName} trained!`);
       savedClassifier.train();
       this.trainedClassifier = savedClassifier;
     });
