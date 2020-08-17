@@ -68,5 +68,14 @@
     "🤎": "lovely",
     "💔": "sad",
     "❣️": "lovely"
-  } 
+  },
+  "translations": {
+    "lovely": "amavel",
+    "surprised": "surpreso",
+    "happy": "feliz",
+    "sad": "triste",
+    "angry": "irritado",
+    "thinking": "pensativo",
+    "laughing": "engraçado"
+  }
 }

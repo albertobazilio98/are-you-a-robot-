@@ -3,7 +3,7 @@ import Discord from 'discord.js';
 import cron from 'node-cron';
 import doSetup from './src/setup';
 import BayesNetwork from './src/bayesNetwork';
-import { emojis } from './emojis.json';
+import { emojis, translations } from './emojis.json';
 
 const client = new Discord.Client();
 
@@ -13,7 +13,7 @@ const sentimentNetwork = new BayesNetwork('sentimentClassifier.json');
 config();
 doSetup(client);
 
-const classifiedMessage = (message) => `${mainNetwork.classify(message)} - ${sentimentNetwork.classify(message)}`;
+const classifiedMessage = (message) => `${mainNetwork.classify(message)} - ${translations[sentimentNetwork.classify(message)]}`;
 
 const introductionMessage = (channel) => {
   channel.send(`Olá, sou uma inteligencia artificial 😃 e fui criado pra entender linguagem natural (essa que vocês seres humanos utilizam para se comunicar), mas pra mim é muito dificil entender o que vocês falam 😭 então quero pelo menos entender o sentimento por trás do que vocês estão falando, e pra isso vocês podem reagir às suas próprias mensagens e às de outras pessoas com emojis que melhor representam elas, eu vou estar olhando e tomando nota pra poder ficar mais esperto, só isso ja me deixa muito feliz 😆\n
