@@ -9,6 +9,7 @@ class BayesNetwork {
     this.classifier = natural.BayesClassifier.load(
       this.fileName, natural.PorterStemmerPt, (err, loadedClassifier) => {
         if (err) {
+          console.log(err);
           this.classifier = new natural.BayesClassifier();
 
           docs.forEach((elem) => {
