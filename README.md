@@ -69,13 +69,13 @@ Placing your bot client id as designated
 
 Select the desired server and the bot will greet himself after joining
 
-[greet](https://i.imgur.com/a1ZVRU8.png)
+![greet](https://i.imgur.com/a1ZVRU8.png)
 
 #### Classifying
 
 The bot will collect and store the text of all reacted messages
 
-[reaction](https://i.imgur.com/08FoQE3.png)
+![reaction](https://i.imgur.com/08FoQE3.png)
 this reaction will output in your console running the collected data like this:
 
 ```js
@@ -93,7 +93,7 @@ The bot will automatically train and backup the gattered data every hour, but yo
 
 After trained you can see the results by send a message that starts with a mention of the bot followed by the text you want to test like this:
 
-[response](https://i.imgur.com/DjtaViJ.png)
+![response](https://i.imgur.com/DjtaViJ.png)
 
 This will output in your console something like this:
 
