@@ -1,5 +1,13 @@
 # Are You a Robot?
 
+Are you a robot? is a chatbot with the purpose of studying artificial intelligences that are capable of interpreting natural language and carrying out sentiment analysis.
+
+The bot learns through baysean networks and porter stemming to associate text with sentiments through reactions with discord emojis.
+
+You can join [the official server by clicking here](https://discord.gg/PvNF3WR) to check the bot features
+
+The bot currently works primarily with Brazilian Portuguese, it also works with other languages, but the results may not be as expected
+
 ## Dependencies
 
   - Node 12.16.1
