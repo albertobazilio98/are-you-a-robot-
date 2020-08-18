@@ -76,6 +76,7 @@ Select the desired server and the bot will greet himself after joining
 The bot will collect and store the text of all reacted messages
 
 ![reaction](https://i.imgur.com/08FoQE3.png)
+
 this reaction will output in your console running the collected data like this:
 
 ```js
