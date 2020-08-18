@@ -1,6 +1,4 @@
 import natural from 'natural';
-import { docs } from '../classifier.json';
-import { emojis } from '../emojis.json';
 
 class BayesNetwork {
   constructor(fileName) {
@@ -12,13 +10,6 @@ class BayesNetwork {
           console.log(err);
           this.classifier = new natural.BayesClassifier();
 
-          docs.forEach((elem) => {
-            if (emojis[elem.label]) {
-              this.classifier.addDocument(elem.text, emojis[elem.label]);
-            }
-          });
-
-          this.saveAndTrain();
           return;
         }
 
@@ -40,7 +31,7 @@ class BayesNetwork {
 
   tokenizeAndLearn(message, label) {
     const tokenizedMessage = natural.PorterStemmerPt.tokenizeAndStem(message);
-    console.log(tokenizedMessage);
+    console.log(tokenizedMessage, label);
     this.classifier.addDocument(tokenizedMessage, label);
   }
 
