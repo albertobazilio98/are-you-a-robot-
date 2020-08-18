@@ -108,7 +108,7 @@ This will output in your console something like this:
 
 MIT License
 
-Copyright (c) 2019 albertobazilio98
+Copyright (c) 2020 albertobazilio98
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
