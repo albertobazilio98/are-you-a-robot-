@@ -48,7 +48,8 @@ client.on('message', (message) => {
   }
   if (message.content.startsWith(`<@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`<@${process.env.CLIENT_ID}>`)) {
     const text = message.content.slice(message.content.indexOf(' '));
-    console.log(mainNetwork.classificationSumary(text), sentimentNetwork.classify(text));
+    console.log(mainNetwork.classificationSumary(text).slice(0, 5));
+    console.log(sentimentNetwork.classificationSumary(text).slice(0, 3));
     message.channel.send(classifiedMessage(text));
   }
   if (message.content.startsWith(`hey <@!${process.env.CLIENT_ID}>`) || message.content.startsWith(`hey <@${process.env.CLIENT_ID}>`)) {
